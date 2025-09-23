@@ -21,5 +21,15 @@ public class CategoryController {
         return categoryService.create(request);
     }
 
+    @GetMapping("/{id}")
+    public CategoryResponseDto getById(@PathVariable Long id){
+       return categoryService.getByIdAndOrg(id);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+       categoryService.deleteReturningDto(id);
+    }
 }
 

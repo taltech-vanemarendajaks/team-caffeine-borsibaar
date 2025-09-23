@@ -5,10 +5,12 @@ import com.borsibaar.backend.dto.CategoryResponseDto;
 import com.borsibaar.backend.entity.Category;
 import com.borsibaar.backend.exception.BadRequestException;
 import com.borsibaar.backend.exception.DuplicateResourceException;
+import com.borsibaar.backend.exception.NotFoundException;
 import com.borsibaar.backend.mapper.CategoryMapper;
 import com.borsibaar.backend.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class CategoryService {
@@ -43,5 +45,29 @@ public class CategoryService {
 
         Category saved = categoryRepository.save(category);
         return categoryMapper.toResponse(saved);
+    }
+
+    @Transactional
+    public CategoryResponseDto getByIdAndOrg(Long id) {
+        Long orgId = 1L;
+        return categoryRepository.findByIdAndOrganizationId(id, orgId)
+                .map(category -> {
+                    CategoryResponseDto dto = categoryMapper.toResponse(category);
+                    categoryRepository.findById(id);
+                    return dto;
+                })
+                .orElseThrow(() -> new NotFoundException("Category not found: " + id ));
+    }
+
+    @Transactional
+    public CategoryResponseDto deleteReturningDto(Long id) {
+        Long orgId = 1L;
+        return  categoryRepository.findByIdAndOrganizationId(id, orgId)
+                .map( category -> {
+                    CategoryResponseDto dto = categoryMapper.toResponse(category);
+                    categoryRepository.delete(category);
+                    return dto;
+                })
+                .orElseThrow(() -> new NotFoundException("Category not found: " + id));
     }
 }
