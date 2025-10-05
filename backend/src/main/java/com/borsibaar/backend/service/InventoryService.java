@@ -4,10 +4,12 @@ import com.borsibaar.backend.dto.*;
 import com.borsibaar.backend.entity.Inventory;
 import com.borsibaar.backend.entity.InventoryTransaction;
 import com.borsibaar.backend.entity.Product;
+import com.borsibaar.backend.entity.User;
 import com.borsibaar.backend.mapper.InventoryMapper;
 import com.borsibaar.backend.repository.InventoryRepository;
 import com.borsibaar.backend.repository.InventoryTransactionRepository;
 import com.borsibaar.backend.repository.ProductRepository;
+import com.borsibaar.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +32,7 @@ public class InventoryService {
     private final InventoryRepository inventoryRepository;
     private final InventoryTransactionRepository inventoryTransactionRepository;
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
     private final InventoryMapper inventoryMapper;
 
     @Transactional(readOnly = true)
@@ -231,10 +238,39 @@ public class InventoryService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "No inventory found for this product"));
 
-        return inventoryTransactionRepository
-                .findByInventoryIdOrderByCreatedAtDesc(inventory.getId())
-                .stream()
-                .map(inventoryMapper::toTransactionResponse)
+        List<InventoryTransaction> transactions = inventoryTransactionRepository
+                .findByInventoryIdOrderByCreatedAtDesc(inventory.getId());
+
+        // Get all unique user IDs (filter out nulls)
+        List<UUID> userIds = transactions.stream()
+                .map(InventoryTransaction::getCreatedBy)
+                .filter(Objects::nonNull)
+                .distinct()
+                .toList();
+
+        // Fetch all users at once
+        Map<UUID, User> userMap = userRepository.findAllById(userIds).stream()
+                .collect(Collectors.toMap(User::getId, user -> user));
+
+        // Map transactions with user information
+        return transactions.stream()
+                .map(transaction -> {
+                    User user = userMap.get(transaction.getCreatedBy());
+                    return new InventoryTransactionResponseDto(
+                            transaction.getId(),
+                            transaction.getInventoryId(),
+                            transaction.getTransactionType(),
+                            transaction.getQuantityChange(),
+                            transaction.getQuantityBefore(),
+                            transaction.getQuantityAfter(),
+                            transaction.getReferenceId(),
+                            transaction.getNotes(),
+                            transaction.getCreatedBy() != null ? transaction.getCreatedBy().toString() : null,
+                            user != null ? user.getName() : null,
+                            user != null ? user.getEmail() : null,
+                            transaction.getCreatedAt() != null ? transaction.getCreatedAt().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME) : null
+                    );
+                })
                 .toList();
     }
 

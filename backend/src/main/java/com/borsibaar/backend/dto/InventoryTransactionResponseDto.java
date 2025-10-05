@@ -12,5 +12,7 @@ public record InventoryTransactionResponseDto(
         String referenceId,
         String notes,
         String createdBy,
+        String createdByName,
+        String createdByEmail,
         String createdAt
 ) {}

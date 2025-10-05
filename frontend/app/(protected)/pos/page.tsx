@@ -10,6 +10,7 @@ import {
   DollarSign,
   Package,
   Trash2,
+  User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,6 +41,15 @@ interface CartItem {
   unitPrice: number;
 }
 
+interface CurrentUser {
+  id: number | string;
+  email: string;
+  name?: string;
+  organizationId?: number;
+  needsOnboarding: boolean;
+  role?: string;
+}
+
 export default function POS() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -49,6 +59,7 @@ export default function POS() {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isProcessingSale, setIsProcessingSale] = useState(false);
+  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -85,9 +96,22 @@ export default function POS() {
     }
   };
 
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch("/api/backend/account");
+      if (response.ok) {
+        const data = await response.json();
+        setCurrentUser(data);
+      }
+    } catch (err) {
+      console.error("Error fetching current user:", err);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
     fetchCategories();
+    fetchCurrentUser();
     // Load cart from localStorage
     const savedCart = localStorage.getItem("pos-cart");
     if (savedCart) {
@@ -244,8 +268,23 @@ export default function POS() {
                 Point of Sales
               </h1>
             </div>
-            <div className="text-sm text-gray-400">
-              Products: {filteredProducts.length}
+            <div className="flex items-center gap-6">
+              {currentUser && (
+                <div className="flex items-center gap-2 text-sm">
+                  <User className="w-4 h-4 text-blue-400" />
+                  <span className="text-gray-300">
+                    {currentUser.name || currentUser.email}
+                  </span>
+                  {currentUser.role && (
+                    <span className="px-2 py-1 bg-blue-900 text-blue-200 rounded-full text-xs">
+                      {currentUser.role}
+                    </span>
+                  )}
+                </div>
+              )}
+              <div className="text-sm text-gray-400">
+                Products: {filteredProducts.length}
+              </div>
             </div>
           </div>
 
@@ -347,6 +386,15 @@ export default function POS() {
               <h2 className="text-xl font-bold text-gray-100">Cart</h2>
               <DollarSign className="w-6 h-6 text-green-400" />
             </div>
+
+            {currentUser && (
+              <div className="mb-4 p-2 bg-gray-800 rounded text-xs text-gray-400">
+                <span className="flex items-center gap-1">
+                  <User className="w-3 h-3" />
+                  Sale by: {currentUser.name || currentUser.email}
+                </span>
+              </div>
+            )}
 
             {cart.length === 0 ? (
               <div className="text-center py-8 text-gray-400">
