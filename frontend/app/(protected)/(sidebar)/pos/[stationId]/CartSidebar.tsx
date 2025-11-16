@@ -96,13 +96,14 @@ export function CartSidebar({
               {cart.map((item) => (
                 <div
                   key={item.productId}
-                  className="flex flex-col gap-1 sm:gap-1.5 p-2 sm:p-3 bg-gray-800 rounded"
+                  className="flex flex-col gap-1 sm:gap-1.5 lg:gap-3 p-2 sm:p-3 bg-gray-800 rounded"
                 >
-                  <div className="flex items-center justify-between gap-2 min-w-0">
+                  {/* Compact layout for smaller screens */}
+                  <div className="flex items-center justify-between gap-6 min-w-0 lg:hidden">
                     <p className="font-medium text-sm sm:text-base text-gray-100 break-words flex-1 min-w-0">
                       {item.productName}
                     </p>
-                    <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                    <div className="flex items-center flex-shrink-0">
                       <Button
                         size="sm"
                         variant="outline"
@@ -146,7 +147,63 @@ export function CartSidebar({
                       <span className="text-xs">Remove</span>
                     </Button>
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-400">
+                  {/* Vertical layout for larger screens */}
+                  <div className="hidden lg:flex flex-col gap-1 min-w-0">
+                    <p className="font-medium text-base text-gray-100 break-words">
+                      {item.productName}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      ${item.unitPrice.toFixed(2)} × {item.quantity} = $
+                      {(item.unitPrice * item.quantity).toFixed(2)}
+                    </p>
+                  </div>
+                  <div className="hidden lg:flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onUpdateQuantity(item.productId, -1);
+                        }}
+                        className="h-8 w-8 p-0"
+                        aria-label={`Decrease quantity of ${item.productName}`}
+                      >
+                        <Minus className="w-4 h-4" />
+                      </Button>
+                      <span className="text-sm font-medium w-8 text-center text-gray-100">
+                        {item.quantity}
+                      </span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onUpdateQuantity(item.productId, 1);
+                        }}
+                        className="h-8 w-8 p-0"
+                        disabled={item.quantity >= item.maxQuantity}
+                        aria-label={`Increase quantity of ${item.productName}`}
+                      >
+                        <Plus className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onRemoveItem(item.productId);
+                      }}
+                      className="h-8 px-3 text-xs"
+                      aria-label={`Remove ${item.productName} from cart`}
+                    >
+                      <Trash2 className="w-4 h-4 mr-1" />
+                      <span className="text-xs">Remove</span>
+                    </Button>
+                  </div>
+                  {/* Price for smaller screens */}
+                  <p className="text-xs sm:text-sm text-gray-400 lg:hidden">
                     ${item.unitPrice.toFixed(2)} × {item.quantity} = $
                     {(item.unitPrice * item.quantity).toFixed(2)}
                   </p>
