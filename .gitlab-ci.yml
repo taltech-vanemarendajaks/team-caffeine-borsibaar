@@ -88,10 +88,11 @@ deploy-job:
        fi
 
        # Copy SSL certificates from Let's Encrypt to project directory
-       sudo mkdir -p nginx/ssl
-       sudo cp -rL /etc/letsencrypt/live/borsibaar.zapto.org/* nginx/ssl/
-       sudo chmod -R 644 nginx/ssl/*
-       sudo chown -R $USER:$USER nginx/ssl/
+       # Currently doing this manually in the server
+      #  sudo mkdir -p nginx/ssl
+      #  sudo cp -rL /etc/letsencrypt/live/borsibaar.zapto.org/* nginx/ssl/
+      #  sudo chmod -R 644 nginx/ssl/*
+      #  sudo chown -R $USER:$USER nginx/ssl/
 
        # Clean/repair builder cache and avoid BuildKit flakiness
       sudo systemctl restart docker
