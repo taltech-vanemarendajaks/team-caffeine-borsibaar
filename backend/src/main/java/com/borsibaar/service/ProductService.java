@@ -11,7 +11,6 @@ import com.borsibaar.repository.CategoryRepository;
 import com.borsibaar.repository.InventoryRepository;
 import com.borsibaar.repository.InventoryTransactionRepository;
 import com.borsibaar.repository.ProductRepository;
-import com.borsibaar.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,6 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
-    private final UserRepository userRepository;
     private final InventoryRepository inventoryRepository;
     private final InventoryTransactionRepository inventoryTransactionRepository;
 
