@@ -989,3 +989,29 @@ databaseChangeLog:
         - dropColumn:
             columnName: price_decrease_step
             tableName: organizations
+
+  - changeSet:
+      id: 015-remove-inventory-organization-id
+      author: codex
+      preconditions:
+        - onFail: MARK_RAN
+        - columnExists:
+            tableName: inventory
+            columnName: organization_id
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: inventory
+            constraintName: fk_inventory_org
+        - dropUniqueConstraint:
+            tableName: inventory
+            constraintName: uk_inventory_org_product
+        - dropIndex:
+            tableName: inventory
+            indexName: idx_inventory_org
+        - dropColumn:
+            tableName: inventory
+            columnName: organization_id
+        - addUniqueConstraint:
+            tableName: inventory
+            columnNames: product_id
+            constraintName: uk_inventory_product
