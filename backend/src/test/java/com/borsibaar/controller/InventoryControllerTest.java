@@ -72,7 +72,6 @@ class InventoryControllerTest {
                 AddStockRequestDto req = new AddStockRequestDto(10L, new BigDecimal("5"), "note");
                 InventoryResponseDto resp = new InventoryResponseDto(
                                 100L,
-                                1L,
                                 10L,
                                 "Cola",
                                 new BigDecimal("15"),
@@ -98,13 +97,13 @@ class InventoryControllerTest {
         @Test
         void getOrganizationInventory_UsesQueryParams_WhenProvided() throws Exception {
                 when(inventoryService.getByOrganization(99L, 7L)).thenReturn(List.of(
-                                new InventoryResponseDto(1L, 99L, 10L, "Cola", BigDecimal.ONE, BigDecimal.TEN, "abc",
+                                new InventoryResponseDto(1L, 10L, "Cola", BigDecimal.ONE, BigDecimal.TEN, "abc",
                                                 BigDecimal.TEN, null, null, OffsetDateTime.now().toString())));
 
                 mockMvc.perform(get("/api/inventory").param("organizationId", "99").param("categoryId", "7"))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$", hasSize(1)))
-                                .andExpect(jsonPath("$[0].organizationId").value(99));
+                                .andExpect(jsonPath("$[0].productId").value(10));
 
                 verify(inventoryService).getByOrganization(99L, 7L);
         }
@@ -114,7 +113,7 @@ class InventoryControllerTest {
                 User user = userWithOrg(5L, "USER");
                 setAuth(user);
                 when(inventoryService.getByProductAndOrganization(10L, 5L)).thenReturn(
-                                new InventoryResponseDto(1L, 5L, 10L, "Water", BigDecimal.TEN, BigDecimal.ONE, "abc",
+                                new InventoryResponseDto(1L, 10L, "Water", BigDecimal.TEN, BigDecimal.ONE, "abc",
                                                 BigDecimal.ONE, null, null, OffsetDateTime.now().toString()));
 
                 mockMvc.perform(get("/api/inventory/product/{productId}", 10L))
@@ -131,7 +130,7 @@ class InventoryControllerTest {
                 RemoveStockRequestDto req = new RemoveStockRequestDto(20L, new BigDecimal("3"), "ref1", "note");
                 when(inventoryService.removeStock(any(RemoveStockRequestDto.class), any(UUID.class), eq(2L)))
                                 .thenReturn(
-                                                new InventoryResponseDto(2L, 2L, 20L, "Beer", new BigDecimal("7"),
+                                                new InventoryResponseDto(2L, 20L, "Beer", new BigDecimal("7"),
                                                                 new BigDecimal("4.00"), "abc", new BigDecimal("3.50"),
                                                                 null, null, OffsetDateTime.now().toString()));
 
@@ -151,7 +150,7 @@ class InventoryControllerTest {
                 AdjustStockRequestDto req = new AdjustStockRequestDto(30L, new BigDecimal("12"), "audit");
                 when(inventoryService.adjustStock(any(AdjustStockRequestDto.class), any(UUID.class), eq(3L)))
                                 .thenReturn(
-                                                new InventoryResponseDto(3L, 3L, 30L, "Juice", new BigDecimal("12"),
+                                                new InventoryResponseDto(3L, 30L, "Juice", new BigDecimal("12"),
                                                                 new BigDecimal("2.00"), "abc", new BigDecimal("2.00"),
                                                                 null, null, OffsetDateTime.now().toString()));
 

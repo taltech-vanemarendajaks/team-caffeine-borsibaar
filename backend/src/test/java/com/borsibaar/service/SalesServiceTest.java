@@ -40,7 +40,7 @@ class SalesServiceTest {
     @Test
     void processSale_SingleItem_SuccessPriceIncreaseCapped() {
         Product product = new Product(); product.setId(5L); product.setOrganizationId(1L); product.setActive(true); product.setBasePrice(BigDecimal.valueOf(10)); product.setMaxPrice(BigDecimal.valueOf(10)); product.setName("Beer");
-        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setOrganizationId(1L); inventory.setQuantity(BigDecimal.valueOf(20)); inventory.setAdjustedPrice(BigDecimal.valueOf(10)); inventory.setUpdatedAt(OffsetDateTime.now());
+        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setQuantity(BigDecimal.valueOf(20)); inventory.setAdjustedPrice(BigDecimal.valueOf(10)); inventory.setUpdatedAt(OffsetDateTime.now());
         product.setInventory(inventory);
         when(productRepository.findById(5L)).thenReturn(Optional.of(product));
         when(inventoryRepository.save(inventory)).thenReturn(inventory);
@@ -59,7 +59,7 @@ class SalesServiceTest {
     @Test
     void processSale_InsufficientStock_Throws() {
         Product product = new Product(); product.setId(5L); product.setOrganizationId(1L); product.setActive(true); product.setBasePrice(BigDecimal.ONE); product.setName("Beer");
-        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setOrganizationId(1L); inventory.setQuantity(BigDecimal.ONE); inventory.setAdjustedPrice(BigDecimal.ONE);
+        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setQuantity(BigDecimal.ONE); inventory.setAdjustedPrice(BigDecimal.ONE);
         product.setInventory(inventory);
         when(productRepository.findById(5L)).thenReturn(Optional.of(product));
         SaleItemRequestDto item = new SaleItemRequestDto(5L, BigDecimal.valueOf(5));
@@ -71,7 +71,7 @@ class SalesServiceTest {
     @Test
     void processSale_ProductInactive_Throws() {
         Product product = new Product(); product.setId(5L); product.setOrganizationId(1L); product.setActive(false); product.setBasePrice(BigDecimal.ONE); product.setName("Beer");
-        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setOrganizationId(1L); inventory.setQuantity(BigDecimal.ONE); inventory.setAdjustedPrice(BigDecimal.ONE);
+        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setQuantity(BigDecimal.ONE); inventory.setAdjustedPrice(BigDecimal.ONE);
         product.setInventory(inventory);
         when(productRepository.findById(5L)).thenReturn(Optional.of(product));
         SaleItemRequestDto item = new SaleItemRequestDto(5L, BigDecimal.ONE);
@@ -83,7 +83,7 @@ class SalesServiceTest {
     @Test
     void processSale_ProductOrgMismatch_Throws() {
         Product product = new Product(); product.setId(5L); product.setOrganizationId(2L); product.setActive(true); product.setBasePrice(BigDecimal.ONE); product.setName("Beer");
-        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setOrganizationId(2L); inventory.setQuantity(BigDecimal.ONE); inventory.setAdjustedPrice(BigDecimal.ONE);
+        Inventory inventory = new Inventory(); inventory.setId(9L); inventory.setProduct(product); inventory.setProductId(5L); inventory.setQuantity(BigDecimal.ONE); inventory.setAdjustedPrice(BigDecimal.ONE);
         product.setInventory(inventory);
         when(productRepository.findById(5L)).thenReturn(Optional.of(product));
         SaleItemRequestDto item = new SaleItemRequestDto(5L, BigDecimal.ONE);
