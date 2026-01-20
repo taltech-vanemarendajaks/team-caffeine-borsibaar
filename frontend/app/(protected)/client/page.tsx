@@ -130,7 +130,7 @@ export default function ClientProductsByCategory() {
             </h2>
           </div>
 
-          <div className="columns-1 min-[1800px]:!columns-2 gap-4 min-[1800px]:max-h-[90vh]" style={{ "columnFill": "auto" }}>
+          <div className="grid masonry grid-cols-1 min-[1800px]:grid-cols-2 gap-4" style={{ "columnFill": "auto" }}>
             {loading && !totalItems && (
               <div className="col-span-full flex h-40 items-center justify-center text-lg text-[#a7a3c7]">
                 Loading…

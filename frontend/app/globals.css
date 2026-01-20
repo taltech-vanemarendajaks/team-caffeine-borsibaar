@@ -130,3 +130,9 @@
     display: none; /* Chrome, Safari and Opera */
   }
 }
+
+
+.masonry {
+  grid-auto-flow: row dense;
+  align-items: start;
+}
