@@ -1,10 +1,28 @@
 # Caffeine
 ## team members and GitHub usernames
-- Andrus Rähni - github.com/mugulane
-- Ilja Sokolov - github.com/ohotnik523
-- Martti Remmelgas - github.com/dotmartti
-- Mathias Ranna - github.com/mathiasranna
-- Ranno Männikust - github.com/s1blik
+- Andrus Rähni - https://github.com/mugulane
+- Ilja Sokolov - https://github.com/ohotnik523
+- Martti Remmelgas - https://github.com/dotmartti
+- Mathias Ranna - https://github.com/mathiasranna
+- Ranno Männikust - https://github.com/s1blik
 
-## short description of your team workflow (branches, reviews, merges) 
+## Team Workflow
+A short description of how the team works with the repository:
 
+## Branches
+- Branches used in project (`main`, `feature/*`).
+- Branch naming format: ` feature/<what this branch implements shortly with "-" instead of spaces> `.
+- Branch names should clearly describe the feature.
+- Only feature/* branch is used for developing purposes.
+
+## Commits
+- Commit messages must clearly describe what was changed
+- Commits shall be regularly pushed to GitHub, making the developing more transparent.
+
+## Pull request
+- Are created once developing work is concluded from developer side.
+- Are reviewed at least by one person
+- Review comments shall be clear and fully describing the point of reviewer. 
+  There shall not be unclear comments, misunderstandings to what lines of code
+  this comment is relates to.
+- Are merged once all review comments are resolved, and all requiremens are satisfied.
