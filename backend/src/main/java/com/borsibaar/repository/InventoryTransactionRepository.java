@@ -20,17 +20,19 @@ public interface InventoryTransactionRepository extends JpaRepository<InventoryT
 
     @Query("""
             SELECT it FROM InventoryTransaction it
-            JOIN Inventory i ON it.inventoryId = i.id
-            WHERE i.organizationId = :organizationId
+            JOIN it.inventory i
+            JOIN i.product p
+            WHERE p.organizationId = :organizationId
             AND it.transactionType = 'SALE'
             ORDER BY it.createdAt DESC
             """)
     List<InventoryTransaction> findSaleTransactionsByOrganizationId(@Param("organizationId") Long organizationId);
 
     @Query(value = """
-              SELECT DISTINCT i.organizationId
+              SELECT DISTINCT p.organizationId
               FROM InventoryTransaction it
-              JOIN Inventory i ON i.id = it.inventoryId
+              JOIN it.inventory i
+              JOIN i.product p
               WHERE it.transactionType = 'SALE'
                 AND it.createdAt >= (CURRENT_TIMESTAMP - 60 SECOND)
             """)
