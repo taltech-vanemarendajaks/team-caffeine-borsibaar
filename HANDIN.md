@@ -1,6 +1,7 @@
-# Hand-in document for Homework
+<<<<<<< HEAD
+# Homework Hand-in document
 
-## 02: Git
+## Homework 2 - Git
 
 
 ### Common parts
