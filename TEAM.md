@@ -15,30 +15,18 @@ A short description of how the team works with the repository:
   instead work shall be done in development branch, reviewed and merged into main with Pull Request.
   Type of development branch is defined with prefix before the name of branch.
 - Prefixes used in project and their explanation:
-  `main - main development branch`
-  `feature/* - Uus funktsionaalsus`
-  `bugfix/* - Bugi parandus`
-  `hotfix/* - Kiire ja kriitiline parandus`
-  `chore/* - Tehniline hooldus, refactor, config, cleanup`
-  `refactor/* - Koodi ümberkorraldus ilma funktsionaalse muutuseta`
-  `docs/* - Dokumentatsioon`
-  `test/* - Testide lisamine/parandamine`
-  `ci/* - CI/CD, GitHub Actions, pipeline`
-  `build/* - build-süsteem, dependency’d`
-  Where "*" is remaining branch name.
-=======
-  | Branch prefix | Description ---------------------------------------|
-  |---------------|----------------------------------------------------|
-  | `main`        | Main development branch ---------------------------|
-  | `feature/*`   | Uus funktsionaalsus -------------------------------|
-  | `bugfix/*`    | Bugi parandus -------------------------------------|
-  | `hotfix/*`    | Kiire ja kriitiline parandus ----------------------|
-  | `chore/*`     | Tehniline hooldus, refactor, config, cleanup ------|
-  | `refactor/*`  | Koodi ümberkorraldus ilma funktsionaalse muutuseta |
-  | `docs/*`      | Dokumentatsioon -----------------------------------|
-  | `test/*`      | Testide lisamine/parandamine ----------------------|
-  | `ci/*`        | CI/CD, GitHub Actions, pipeline -------------------|
-  | `build/*`     | Build-süsteem, dependency’d -----------------------|
+  | Branch pattern | Description |
+  |--------------- |-------------|
+  | `main`         | Main development branch |
+  | `feature/*`    | Uus funktsionaalsus |
+  | `bugfix/*`     | Bugi parandus |
+  | `hotfix/*`     | Kiire ja kriitiline parandus |
+  | `chore/*`      | Tehniline hooldus, refactor, config, cleanup |
+  | `refactor/*`   | Koodi ümberkorraldus ilma funktsionaalse muutuseta |
+  | `docs/*`       | Dokumentatsioon |
+  | `test/*`       | Testide lisamine/parandamine |
+  | `ci/*`         | CI/CD, GitHub Actions, pipeline |
+  | `build/*`      | Build-süsteem, dependency’d |
   > Where "*" is remaining branch name.
 - Branch names should clearly describe the job that is being done in that branch.
 
