@@ -35,3 +35,12 @@ We decided each should have their own issue and they will define the feature the
   * Step 11: Use different merge types
 
   These steps were completed within PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/21
+
+* Part 3: Creating and resolving conflicts
+
+  * Step 7: Intentionally create a conflict
+  * Step 8: Resolve the conflict
+
+We simulated a conflict in creating the HANDIN.md file itself.
+Initial creation 
+PR where dotmartti resolved his conflict https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
