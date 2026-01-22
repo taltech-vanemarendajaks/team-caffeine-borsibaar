@@ -42,6 +42,8 @@ docker compose up
 cd frontend && npm install && npm run dev
 ```
 
+8. Go and look your application http://localhost:3000/
+
 
 ## Development Commands
 
