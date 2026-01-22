@@ -37,7 +37,6 @@ A short description of how the team works with the repository:
 - Commits shall be regularly pushed to GitHub, making the developing more transparent.
 
 ## Pull Request
-- Are created once developing work is concluded from developer side.
 - Are reviewed at least by one person
 - Review comments shall be clear and fully describing the point of reviewer. 
   There shall not be unclear comments, they should be technically full and respectful.
