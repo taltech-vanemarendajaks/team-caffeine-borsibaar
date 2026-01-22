@@ -59,11 +59,7 @@ public class CategoryService {
     @Transactional
     public CategoryResponseDto getByIdAndOrg(Long id, Long organizationId) {
         return categoryRepository.findByIdAndOrganizationId(id, organizationId)
-                .map(category -> {
-                    CategoryResponseDto dto = categoryMapper.toResponse(category);
-                    categoryRepository.findById(id);
-                    return dto;
-                })
+                .map(categoryMapper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Category not found: " + id));
     }
 
