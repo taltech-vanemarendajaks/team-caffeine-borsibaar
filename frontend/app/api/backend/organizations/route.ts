@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { backendUrl } from "@/utils/constants";
+import { backendUrl, JSON_CONTENT_TYPE } from "@/utils/constants";
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         status: response.status,
         headers: {
           "Content-Type":
-            response.headers.get("content-type") || "application/json",
+            response.headers.get("content-type") || JSON_CONTENT_TYPE,
         },
       });
     }

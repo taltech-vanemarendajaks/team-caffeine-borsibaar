@@ -9,6 +9,7 @@ import { POSHeader } from "./POSHeader";
 import { ProductCard } from "./ProductCard";
 import { CartSidebar } from "./CartSidebar";
 import { Product, Category, CartItem, CurrentUser, BarStation } from "./types";
+import { JSON_CONTENT_TYPE } from "@/utils/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -198,7 +199,7 @@ export default function POSStation() {
       const response = await fetch("/api/backend/sales", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": JSON_CONTENT_TYPE,
         },
         body: JSON.stringify(saleRequest),
       });

@@ -14,3 +14,8 @@
  * Note: Browser API calls go through Next.js proxy, not directly to backend
  */
 export const backendUrl = process.env.BACKEND_URL ?? "http://localhost:8080";
+
+/**
+ * HTTP Content Type Constants
+ */
+export const JSON_CONTENT_TYPE = "application/json";

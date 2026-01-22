@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import { backendUrl } from "@/utils/constants";
+import { backendUrl, JSON_CONTENT_TYPE } from "@/utils/constants";
 
 export async function DELETE(
     request: NextRequest,
@@ -10,7 +10,7 @@ export async function DELETE(
         const response = await fetch(`${backendUrl}/api/products/${id}`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": JSON_CONTENT_TYPE,
                 Cookie: request.headers.get("cookie") || "",
             },
             credentials: "include",

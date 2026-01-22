@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { backendUrl } from "@/utils/constants";
+import { backendUrl, JSON_CONTENT_TYPE } from "@/utils/constants";
 
 // Proxy endpoint for a single organization resource
 export async function GET(
@@ -23,7 +23,7 @@ export async function GET(
     // Pass through non-OK responses as-is (text or json)
     if (!response.ok) {
       const contentType = response.headers.get("content-type") || "";
-      if (contentType.includes("application/json")) {
+      if (contentType.includes("JSON_CONTENT_TYPE")) {
         const json = await response.json();
         return NextResponse.json(json, { status: response.status });
       }
@@ -56,7 +56,7 @@ export async function PUT(
         {
           method: "PUT",
           headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "JSON_CONTENT_TYPE",
               Cookie: request.headers.get("cookie") || "",
           },
           credentials: "include",
