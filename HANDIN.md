@@ -9,3 +9,7 @@
 - Make sure the final result makes sense and the project still works 
 - Commit the conflict resolution 
 - Push the updated branch
+
+# Homework Hand-in document
+
+## Homework 2 - Git
