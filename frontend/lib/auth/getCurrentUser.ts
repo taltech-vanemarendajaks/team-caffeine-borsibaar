@@ -1,6 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { JSON_CONTENT_TYPE } from "@/utils/constants";
+import { JSON_HEADERS } from "@/utils/constants";
 
 // Shape returned by backend /api/account
 export interface CurrentUser {
@@ -43,7 +43,7 @@ export async function getCurrentUser(): Promise<Result> {
   if (!res.ok) return { user: null, status: res.status };
 
   const ct = res.headers.get("content-type") || "";
-  if (!ct.includes(JSON_CONTENT_TYPE)) return { user: null, status: 502 };
+  if (!ct.includes(JSON_HEADERS["Content-Type"])) return { user: null, status: 502 };
   try {
     const json = (await res.json()) as CurrentUser;
     if (!json || typeof json !== "object") return { user: null, status: 500 };

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
-import { backendUrl, JSON_CONTENT_TYPE } from "@/utils/constants";
+import { backendUrl, JSON_HEADERS } from "@/utils/constants";
 
 type Org = { id: number; name: string; createdAt?: string; updatedAt?: string };
 
@@ -70,7 +70,7 @@ export default function OnboardingPage() {
 
       const resp = await fetch("/api/backend/account/onboarding", {
         method: "POST",
-        headers: { "Content-Type": JSON_CONTENT_TYPE },
+        headers: JSON_HEADERS,
         credentials: "include",
         body: JSON.stringify({ organizationId, acceptTerms: true }),
       });

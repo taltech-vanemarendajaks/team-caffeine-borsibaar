@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { backendUrl, JSON_CONTENT_TYPE } from "@/utils/constants";
+import { backendUrl, JSON_HEADERS } from "@/utils/constants";
 
 export async function GET(
   request: NextRequest,
@@ -49,7 +49,7 @@ export async function PUT(
       {
         method: "PUT",
         headers: {
-          "Content-Type": JSON_CONTENT_TYPE,
+          ...JSON_HEADERS,
           Cookie: request.headers.get("cookie") || "",
         },
         body: JSON.stringify(body),
