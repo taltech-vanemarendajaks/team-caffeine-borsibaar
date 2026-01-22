@@ -23,7 +23,7 @@ export async function GET(
     // Pass through non-OK responses as-is (text or json)
     if (!response.ok) {
       const contentType = response.headers.get("content-type") || "";
-      if (contentType.includes("JSON_CONTENT_TYPE")) {
+      if (contentType.includes(JSON_CONTENT_TYPE)) {
         const json = await response.json();
         return NextResponse.json(json, { status: response.status });
       }
@@ -56,7 +56,7 @@ export async function PUT(
         {
           method: "PUT",
           headers: {
-              "Content-Type": "JSON_CONTENT_TYPE",
+              "Content-Type": JSON_CONTENT_TYPE,
               Cookie: request.headers.get("cookie") || "",
           },
           credentials: "include",
