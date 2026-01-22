@@ -42,5 +42,6 @@ We decided each should have their own issue and they will define the feature the
   * Step 8: Resolve the conflict
 
 We simulated a conflict in creating the HANDIN.md file itself.
-Initial creation 
+Initial creation PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/24
+
 PR where dotmartti resolved his conflict https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
