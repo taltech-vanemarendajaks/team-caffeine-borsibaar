@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { backendUrl } from "@/utils/constants";
+import { backendUrl, JSON_HEADERS } from "@/utils/constants";
 
 export async function POST(request: NextRequest) {
     try {
@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
         const response = await fetch(`${backendUrl}/api/inventory/adjust`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                ...JSON_HEADERS,
                 Cookie: request.headers.get("cookie") || "",
             },
             credentials: "include",

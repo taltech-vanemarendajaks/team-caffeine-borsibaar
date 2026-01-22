@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { backendUrl } from "@/utils/constants";
+import { backendUrl, JSON_HEADERS } from "@/utils/constants";
 
 export async function GET(request: NextRequest) {
   try {
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch(`${backendUrl}/api/bar-stations`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        ...JSON_HEADERS,
         Cookie: request.headers.get("cookie") || "",
       },
       body: JSON.stringify(body),

@@ -6,6 +6,7 @@ import { AlertCircle, Store } from "lucide-react";
 import { StationManagementHeader } from "./StationManagementHeader";
 import { StationCard } from "./StationCard";
 import { CurrentUser, BarStation, User } from "./types";
+import { JSON_HEADERS } from "@/utils/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -116,7 +117,7 @@ export default function POSManagement() {
 
     const response = await fetch("/api/backend/bar-stations", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: JSON_HEADERS,
       body: JSON.stringify(payload),
     });
 
@@ -145,7 +146,7 @@ export default function POSManagement() {
 
     const response = await fetch(`/api/backend/bar-stations/${stationId}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: JSON_HEADERS,
       body: JSON.stringify(payload),
     });
 

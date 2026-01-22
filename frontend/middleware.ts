@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { JSON_HEADERS } from "@/utils/constants";
 
 // Middleware runs server-side in Docker container, so it can use BACKEND_URL directly
 // This avoids going through nginx and Next.js API routes
@@ -14,7 +15,7 @@ async function fetchUser(req: NextRequest) {
     if (res.status === 401) return null;
     if (!res.ok) return null;
     const ct = res.headers.get("content-type") || "";
-    if (!ct.includes("application/json")) return null;
+    if (!ct.includes(JSON_HEADERS["Content-Type"])) return null;
     return await res.json();
   } catch {
     return null;

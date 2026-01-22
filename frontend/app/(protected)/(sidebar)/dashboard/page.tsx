@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { Input } from "@/components/ui/input";
+import { JSON_HEADERS } from "@/utils/constants";
 
 export const dynamic = "force-dynamic"; // still opt-out of caching
 
@@ -149,7 +150,7 @@ export default function Dashboard() {
         `/api/backend/organizations/${me.organizationId}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: JSON_HEADERS,
           body: JSON.stringify({
             name: orgDetails.name,
             priceIncreaseStep: orgDetails.priceIncreaseStep,

@@ -13,6 +13,7 @@ import {
   ListPlus,
   Trash,
 } from "lucide-react";
+import { JSON_HEADERS } from "@/utils/constants";
 
 interface InventoryTransactionResponseDto {
   id: number;
@@ -152,7 +153,7 @@ export default function Inventory() {
     try {
       const productResponse = await fetch("/api/backend/product", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
         body: JSON.stringify({
           name: productForm.name,
           description: productForm.description,
@@ -176,7 +177,7 @@ export default function Inventory() {
       ) {
         await fetch("/api/backend/inventory/add", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: JSON_HEADERS,
           credentials: "include",
           body: JSON.stringify({
             productId: newProduct.id,
@@ -216,7 +217,7 @@ export default function Inventory() {
     try {
       const response = await fetch("/api/backend/inventory/add", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
         credentials: "include",
         body: JSON.stringify({
           // @ts-expect-error: types aren't imported currently from backend
@@ -243,7 +244,7 @@ export default function Inventory() {
     try {
       const response = await fetch("/api/backend/inventory/remove", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
         credentials: "include",
         body: JSON.stringify({
           // @ts-expect-error: types aren't imported currently from backend
@@ -274,7 +275,7 @@ export default function Inventory() {
     try {
       const response = await fetch("/api/backend/inventory/adjust", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
         credentials: "include",
         body: JSON.stringify({
           // @ts-expect-error: types aren't imported currently from backend
@@ -301,7 +302,7 @@ export default function Inventory() {
     try {
       const categoryResponse = await fetch("/api/backend/categories", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
         body: JSON.stringify({
           name: categoryForm.name,
           dynamicPricing: categoryForm.dynamicPricing,
@@ -333,7 +334,7 @@ export default function Inventory() {
     try {
       const deleteResponse = await fetch(`/api/backend/product/${id}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
       });
 
       if (!deleteResponse.ok) {

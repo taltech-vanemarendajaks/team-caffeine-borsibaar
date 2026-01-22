@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { backendUrl } from '@/utils/constants';
+import { backendUrl, JSON_HEADERS } from '@/utils/constants';
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch(`${backendUrl}/api/account/onboarding`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        ...JSON_HEADERS,
         'Cookie': request.headers.get('cookie') || '',
       },
       credentials: 'include',
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     return new NextResponse(text, { 
       status: response.status,
       headers: {
-        'Content-Type': response.headers.get('content-type') || 'application/json',
+        'Content-Type': response.headers.get('content-type') || JSON_HEADERS["Content-Type"],
         'Set-Cookie': response.headers.get('set-cookie') || '',
       }
     });

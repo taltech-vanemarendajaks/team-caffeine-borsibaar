@@ -14,3 +14,20 @@
  * Note: Browser API calls go through Next.js proxy, not directly to backend
  */
 export const backendUrl = process.env.BACKEND_URL ?? "http://localhost:8080";
+
+/**
+ * Common HTTP Headers
+ *
+ * JSON_HEADERS: Standard headers for JSON requests
+ * Use directly for simple requests, or spread for requests with additional headers:
+ *
+ * @example
+ * // Direct usage
+ * fetch(url, { method: "POST", headers: JSON_HEADERS })
+ *
+ * // With additional headers
+ * fetch(url, { headers: { ...JSON_HEADERS, Cookie: "..." } })
+ */
+export const JSON_HEADERS = {
+  "Content-Type": "application/json",
+} as const;
