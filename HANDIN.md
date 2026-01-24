@@ -25,6 +25,33 @@ We decided each should have their own issue and they will define the feature the
 
 ### dotmartti
 
+### Mugulane
+
+### ohotnik523 (Ilja Sokolov)
+
+* Part 2: Branching and parallel development
+
+  * Step 5: Create feature branch
+  * Step 6: Work on features
+  * Step 9: Open pull request
+  * Step 10: Review pull requests
+  * Step 11: Use different merge types
+
+  These steps were completed within PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/20
+
+* Part 3: Creating and resolving conflicts
+  * Step 7: Intentionally create a conflict
+  * Step 8: Resolve the conflict
+
+  My first merge conflict occurred in this pull request:
+  https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/20
+
+  The conflict happened after I amended a commit message that had already been pushed to the remote repository. Since amending a commit rewrites history, my local branch diverged from the remote one. When I ran git pull, Git detected conflicts in my own files.
+
+  I resolved the conflict by manually reviewing the files and keeping the correct final version of the code. I chose this approach because the branch had already been pushed and was used in a pull request. Using rebase on published commits would rewrite shared history and could cause additional confusion or conflicts for collaborators.
+
+### dotmartti
+
 * Part 2: Branching and parallel development
 
   * Step 5: Create feature branch
