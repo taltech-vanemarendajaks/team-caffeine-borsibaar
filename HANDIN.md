@@ -88,4 +88,4 @@
 We simulated a conflict in creating the HANDIN.md file itself.
 Initial creation PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/24
 
-PR where dotmartti resolved his conflict https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
+PR where dotmartti resolved his conflict locally using the command line (and almost forgot the merge conflict marker "<<<<<<< HEAD" into the file) https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
