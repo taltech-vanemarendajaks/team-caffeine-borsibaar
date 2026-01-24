@@ -95,6 +95,24 @@ class CategoryServiceTest {
     }
 
     @Test
+    void getByIdAndOrg_Success_ReturnsDto() {
+        Category category = new Category();
+        category.setId(10L);
+        category.setName("Test Category");
+        category.setDynamicPricing(true);
+
+        when(categoryRepository.findByIdAndOrganizationId(10L, 1L)).thenReturn(Optional.of(category));
+        when(categoryMapper.toResponse(category)).thenReturn(new CategoryResponseDto(10L, "Test Category", true));
+
+        CategoryResponseDto result = categoryService.getByIdAndOrg(10L, 1L);
+
+        assertEquals(10L, result.id());
+        assertEquals("Test Category", result.name());
+        assertTrue(result.dynamicPricing());
+        verify(categoryMapper).toResponse(category);
+    }
+
+    @Test
     void deleteReturningDto_Success_Deletes() {
         Category cat = new Category(); cat.setId(5L); cat.setName("Del");
         when(categoryRepository.findByIdAndOrganizationId(5L, 1L)).thenReturn(Optional.of(cat));
