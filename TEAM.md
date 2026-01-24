@@ -42,3 +42,10 @@ A short description of how the team works with the repository:
   There shall not be unclear comments, they should be technically full and respectful.
 - Are merged once all review comments are resolved, and all requiremens are satisfied.
 - Pull Request is merged only by it's creator.
+
+## Merge strategies used
+- Ilja: Used Squash merge strategy, for me it's the most common and clean approach in the sense of 
+  development with lots of commits. The main branch is not spammed with commits, only with one and
+  most importantly this strategy creates very easily parsable commit message that contains all
+  the information about the development on that branch, it is useful for automatization. No issues were incountered
+  during merging, the only thing is I needed to get familiralized with GitBucket UI for Pull Requests
