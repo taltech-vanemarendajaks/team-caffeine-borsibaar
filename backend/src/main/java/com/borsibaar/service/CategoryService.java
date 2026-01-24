@@ -20,6 +20,7 @@ public class CategoryService {
     private final CategoryMapper categoryMapper;
 
     public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+        // This is comment, that should create conflict for Mathias
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
     }
