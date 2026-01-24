@@ -6,17 +6,35 @@
 ### Common parts
 
 * Part 1: Repository setup
-  * Steps 1-2 DONE for everybody already.
+  * Step 1: Fork the repository
+    + fork completed along with migration under common org
+  * Step 2: Clone the repository
+    + DONE everybody works in their local clone
 
   * Step 3: Initial Commit
-The initial commit concerning with TEAM.md:
-https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/commit/14d0d29e282dcdc3178474a5e1ba42c7450b59c6
+    The initial commit concerning with TEAM.md:
+    https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/commit/14d0d29e282dcdc3178474a5e1ba42c7450b59c6
 
-But this didn't resolve the whole step. The TEAM.md was describe in full after a team meeting at 2026-01-22 in PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/20
+    But this didn't resolve the whole step. The TEAM.md was describe in full after a team meeting at 2026-01-22 in PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/20
 
 * Part 2: Branching and parallel development
   * Step 4: Define features
-We decided each should have their own issue and they will define the feature themselves that they're working on.
+    + We decided each should have their own issue and they will define the feature themselves that they're working on.
+
+* Part 5: Merging strategies (in GitHub GUI)
+  * Step 11: Use different merge types
+    + We used at least Squash and Rebase
+  * Step 12: Explain your choices
+    + Updated TEAM.md with comments https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/29
+
+* Part 6: Final cleanup
+  * Step 13: Repository hygiene
+    + Delete merged feature branches
+    + Ensure main contains all final changes
+  * Step 14: Documentation
+    + Create a file HANDIN.md
+    + Include links to PR, explain conflicts, what each team member worked on.
+
 
 ### Mugulane
 
