@@ -18,13 +18,6 @@ But this didn't resolve the whole step. The TEAM.md was describe in full after a
   * Step 4: Define features
 We decided each should have their own issue and they will define the feature themselves that they're working on.
 
-
-### ohotnik523
-
-### Mugulane
-
-### dotmartti
-
 ### Mugulane
 
 ### ohotnik523 (Ilja Sokolov)
