@@ -43,6 +43,13 @@ We decided each should have their own issue and they will define the feature the
 
   I resolved the conflict by manually reviewing the files and keeping the correct final version of the code. I chose this approach because the branch had already been pushed and was used in a pull request. Using rebase on published commits would rewrite shared history and could cause additional confusion or conflicts for collaborators.
 
+  The main conflict occurred in this pull request:
+  https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/32
+
+  The conflict occurred because the branch was intentionally created from an older version of the repository where the HANDIN section did not exist. After copying the HANDIN content into this branch and changing the order of sections in the document, a conflict was created.
+
+  I resolved the conflict using git rebase and manual conflict resolution. I chose rebase because I wanted to replay my changes on top of the updated branch and keep a linear and clean commit history, which was suitable in this case since the changes were only on my branch.
+
 ### dotmartti
 
 * Part 2: Branching and parallel development
