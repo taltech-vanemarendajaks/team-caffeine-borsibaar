@@ -90,4 +90,4 @@ Initial creation PR https://github.com/taltech-vanemarendajaks/team-caffeine-bor
 
 PR where dotmartti resolved his conflict locally using the command line (and almost forgot the merge conflict marker "<<<<<<< HEAD" into the file) https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
 
-### S1blik
+### S1blik (Ranno Maennikust)
