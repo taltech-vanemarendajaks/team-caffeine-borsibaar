@@ -113,6 +113,31 @@ Initial creation PR https://github.com/taltech-vanemarendajaks/team-caffeine-bor
 PR where dotmartti resolved his conflict locally using the command line (and almost forgot the merge conflict marker "<<<<<<< HEAD" into the file) https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
 
 
+### S1blik (Ranno Männikust)
+
+* Part 2: Branching and parallel development
+
+  * Step 5: Create feature branch
+  * Step 6: Work on features
+  * Step 9: Open pull request
+  * Step 10: Review pull requests
+  * Step 11: Use different merge types
+
+These steps were completed in PR #36:  
+https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/36
+
+* Part 3: Creating and resolving conflicts
+
+  * Step 7: Intentionally create a conflict
+  * Step 8: Resolve the conflict
+
+A conflict was intentionally created in the `HANDIN.md` file as part of the exercise.  
+The conflict occurred in branch:  
+`docs/022-ranno-making-a-conflict-with-handin-md`
+
+The conflict was resolved locally using the nano editor: nano HANDIN.md
+After resolving the conflict, the changes were committed and pushed, and the pull request was successfully merged.
+
 ### MathiasRanna
 
 * Part 2: Branching and parallel development
