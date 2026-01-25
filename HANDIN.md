@@ -36,7 +36,29 @@
     + Include links to PR, explain conflicts, what each team member worked on.
 
 
-### Mugulane
+### Mugulane (Andrus Rähni)
+
+* Part 2: Branching and parallel development
+
+  * Step 5: Create feature branch
+  * Step 6: Work on features
+  * Step 9: Open pull request
+  * Step 10: Review pull requests
+  * Step 11: Use different merge types
+
+  These steps were completed within PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/20
+
+* Part 3: Creating and resolving conflicts
+  * Step 7: Intentionally create a conflict
+  * Step 8: Resolve the conflict
+
+I simulated a conflict with Martti in creating the HANDIN.md file itself. It was quite late at night, so it was quite hard to follow what one did or did not do.
+https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/27
+
+For later notice - do not work late at night and/or when you are tired.
+Resolved conflicts locally using the command line. Removing "<<<<<<<" ">>>>>>>" markers. 
+Conflicts are less likely when you fetch frequently and avoid modifying the same lines.
+
 
 ### ohotnik523 (Ilja Sokolov)
 
