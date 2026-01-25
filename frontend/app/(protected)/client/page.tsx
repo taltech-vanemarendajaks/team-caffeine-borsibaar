@@ -282,8 +282,7 @@ export default function ClientProductsByCategory() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div
-                  key={s.name}
+                <div                  
                   className="flex items-center justify-center h-20 w-40 md:w-48"
                 >
                   <Image
