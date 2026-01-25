@@ -4,6 +4,8 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import Chart from "./Chart";
 import Image from "next/image";
+import Link from "next/link";
+
 
 type Category = { id: number; name: string; organizationId?: number };
 export type InvDto = {
@@ -28,8 +30,12 @@ const sponsors = [
   { name: "Red Bull", logo: "/redbull.svg" },
   { name: "itük", logo: "/ituk_long_nottu_red.svg" },
   { name: "alecoq", logo: "/alecoq.svg" },
-  { name: "insük", logo: "/insyk.png"},
-  { name: "anora", logo: "/anora-group-logo-white-CMYK.png"}
+  { name: "insük", logo: "/insyk.png" },
+  { name: "anora", logo: "/anora-group-logo-white-CMYK.png" }
+];
+
+const teamnameidea = [
+  { name: "caffeine", logo: "/caffeine.png" }
 ];
 
 export default function ClientProductsByCategory() {
@@ -124,7 +130,7 @@ export default function ClientProductsByCategory() {
             </h2>
           </div>
 
-          <div className="columns-1 min-[1800px]:!columns-2 gap-4 min-[1800px]:max-h-[90vh]" style={{ "columnFill": "auto" }}>
+          <div className="grid masonry grid-cols-1 min-[1800px]:grid-cols-2 gap-4" style={{ "columnFill": "auto" }}>
             {loading && !totalItems && (
               <div className="col-span-full flex h-40 items-center justify-center text-lg text-[#a7a3c7]">
                 Loading…
@@ -263,6 +269,31 @@ export default function ClientProductsByCategory() {
                   className="max-h-10 max-w-full object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
+            ))}
+          </div>
+          <div className="inline-flex items-center gap-5 rounded-full bg-[#191530] px-6 py-4 mx-3 my-2 border border-[#2a2640]">
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-[#8b88a9]">
+              Team
+            </span>
+            {teamnameidea.map((s) => (
+              <Link
+                key={s.name}
+                href="https://caffeine.ee/meie-kohvikud-tallinnas/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div                  
+                  className="flex items-center justify-center h-20 w-40 md:w-48"
+                >
+                  <Image
+                    src={s.logo}
+                    alt={s.name}
+                    width={120}
+                    height={120}
+                    className="h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+              </Link>
             ))}
           </div>
         </section>

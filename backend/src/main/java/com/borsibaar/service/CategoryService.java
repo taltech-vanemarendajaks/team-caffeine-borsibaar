@@ -10,20 +10,16 @@ import com.borsibaar.mapper.CategoryMapper;
 import com.borsibaar.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
-
-    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
-        // This is comment, that should create conflict for Mathias
-        this.categoryRepository = categoryRepository;
-        this.categoryMapper = categoryMapper;
-    }
 
     @Transactional
     public CategoryResponseDto create(CategoryRequestDto request, Long organizationId) {
@@ -63,11 +59,7 @@ public class CategoryService {
     @Transactional
     public CategoryResponseDto getByIdAndOrg(Long id, Long organizationId) {
         return categoryRepository.findByIdAndOrganizationId(id, organizationId)
-                .map(category -> {
-                    CategoryResponseDto dto = categoryMapper.toResponse(category);
-                    categoryRepository.findById(id);
-                    return dto;
-                })
+                .map(categoryMapper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Category not found: " + id));
     }
 
