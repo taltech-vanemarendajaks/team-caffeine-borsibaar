@@ -1,5 +1,3 @@
-proovin siia midagi kirjutada... konfliktset. 
-
 # Homework Hand-in document
 
 ## Homework 2 - Git
@@ -113,3 +111,21 @@ We simulated a conflict in creating the HANDIN.md file itself.
 Initial creation PR https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/24
 
 PR where dotmartti resolved his conflict locally using the command line (and almost forgot the merge conflict marker "<<<<<<< HEAD" into the file) https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/25
+
+
+### MathiasRanna
+
+* Part 2: Branching and parallel development
+
+  * Step 5: Create feature branch -> `feature/refactor-category-service`
+  * Step 6: Work on features
+  * Step 9: Open pull request -> https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/9
+  * Step 10: Review pull requests -> https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/8
+
+
+* Part 3: Creating and resolving conflicts
+
+  * Step 7: Intentionally create a conflict -> Conflict created by Ilja https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/34
+  * Step 8: Resolve the conflict -> Resolved the conflict by rebase
+  * Step 11: Use different merge types in team -> Team used Squash merge, I used rebase based merge
+https://github.com/taltech-vanemarendajaks/team-caffeine-borsibaar/pull/9
