@@ -276,6 +276,12 @@ export default function ClientProductsByCategory() {
               Team
             </span>
             {teamnameidea.map((s) => (
+              <Link
+                key={s.name}
+                href="https://caffeine.ee/meie-kohvikud-tallinnas/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div
                   key={s.name}
                   className="flex items-center justify-center h-20 w-40 md:w-48"
@@ -288,6 +294,7 @@ export default function ClientProductsByCategory() {
                     className="h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
                   />
                 </div>
+              </Link>
             ))}
           </div>
         </section>
