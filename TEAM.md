@@ -42,3 +42,14 @@ A short description of how the team works with the repository:
   There shall not be unclear comments, they should be technically full and respectful.
 - Are merged once all review comments are resolved, and all requiremens are satisfied.
 - Pull Request is merged only by it's creator.
+
+## Merge strategies used
+- Ilja: Used Squash merge strategy, for me it's the most common and clean approach in the sense of 
+  development with lots of commits. The main branch is not spammed with commits, only with one and
+  most importantly this strategy creates very easily parsable commit message that contains all
+  the information about the development on that branch, it is useful for automatization. No issues were incountered
+  during merging, the only thing is I needed to get familiralized with GitBucket UI for Pull Requests
+- Martti: Used Squash as well, because Andrus used Rebase and I understood from the task that we needed at least two different. But on any other day I've preferred Rebase to avoid additional merge commits and the comment history won't be lost by squashing commits with comments into one blob. But I understand the attractiveness of Squash in case you have hundreds of useless commits with useless comments like "WIP" that you want to hide.
+- Andrus: I used rebase purely for learning purposes, to better understand the differences between various merge strategies. From my current experience level, rebase feels valuable in terms of keeping the commit history clean and readable. I also understand that squash becomes especially useful in larger projects, where it helps keep the number of commits manageable and avoids cluttering the history.
+  * Later, in another PR I encountered a weird situation where I wanted to Rebase, but Github interface didn't allow. Said there was a conflict. But I could select other two merge strategies. Yet later I could rebase another PR without problems. An anomaly?
+- Mathias: Used rebase method and solved conflict. Chose it as I mostly have used regular merge commit method to resolve conflicts.
