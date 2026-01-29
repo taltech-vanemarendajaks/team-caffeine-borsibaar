@@ -15,7 +15,7 @@ Testing is essential to ensure the correctness and reliability of Börsibaar’s
 
 This test plan outlines the strategy and scope for validating Börsibaar across all layers of the system, ensuring stable operation, accurate pricing behavior, and a secure user experience before deployment.  
 
-## **Börsibaar – Test Plan (Draft)**
+## **Börsibaar – Test Plan**
 
 ## **1\. Testing Objectives**
 
