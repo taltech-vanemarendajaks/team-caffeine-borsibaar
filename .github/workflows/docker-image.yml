@@ -16,7 +16,7 @@ jobs:
       SERVER_IP: ${{ secrets.SERVER_IP }}
       DEPLOY_PATH: ~/studentbar-pos-deploy
       ENV_PRODUCTION_FILE: ${{ secrets.ENV_PRODUCTION_FILE }}
-      DOCKER_COMPOSE_FILE: docker-compose.prd.yaml
+      DOCKER_COMPOSE_FILE: docker-compose.prod.yaml
 
     steps:
       - name: Checkout code
