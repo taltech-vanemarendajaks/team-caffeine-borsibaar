@@ -16,7 +16,7 @@ jobs:
       SERVER_IP: ${{ secrets.SERVER_IP }}
       DEPLOY_PATH: ~/studentbar-pos-deploy
       ENV_PRODUCTION_FILE: ${{ secrets.ENV_PRODUCTION_FILE }}
-      DOCKER_COMPOSE_FILE: docker-compose.prod.yaml
+      DOCKER_COMPOSE_FILE: docker-compose.prd.yaml
 
     steps:
       - name: Checkout code
@@ -79,6 +79,21 @@ jobs:
             deployment.tar.gz \
             "$SSH_USER@$SERVER_IP:/tmp/"
 
+      - name: Verify server prereqs (Docker)
+        run: |
+          ssh -i ~/.ssh/id_rsa \
+            -o StrictHostKeyChecking=yes \
+            "$SSH_USER@$SERVER_IP" << EOF
+          set -e
+
+          cat /etc/issue
+          uname -a
+          ls -lah
+          uptime
+          docker version
+          docker compose version
+          EOF
+
       - name: Deploy on server
         run: |
           ssh -i ~/.ssh/id_rsa \
@@ -86,46 +101,40 @@ jobs:
             "$SSH_USER@$SERVER_IP" << EOF
           set -e
 
-          pwd
-          uname -a
-          ls -lah
-          uptime
+          mkdir -p $DEPLOY_PATH
+          cd $DEPLOY_PATH
+
+          # Extract deployment package
+          tar xzf /tmp/deployment.tar.gz
+          rm /tmp/deployment.tar.gz
+
+          # Check if docker-compose file exists
+          if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
+            echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
+            exit 1
+          fi
+
+          # Copy environment file if exists
+          if [ -f .env.production ]; then
+            cp .env.production .env
+          fi
+
+          # Clean/repair builder cache and avoid BuildKit flakiness
+          # sudo systemctl restart docker
+          # docker buildx prune -af || true
+          # docker builder prune -af || true
+          # docker image prune -af || true
+
+          # Stop existing containers
+          docker compose -f "$DOCKER_COMPOSE_FILE" down
+
+          # Rebuild and start containers
+          docker compose -f "$DOCKER_COMPOSE_FILE" build --no-cache
+          docker compose -f "$DOCKER_COMPOSE_FILE" up -d
+
+          # Clean up old images
+          # docker image prune -f
+
+          echo "Deployment complete!"
+          docker compose -f "$DOCKER_COMPOSE_FILE" ps
           EOF
-
-      #     mkdir -p $DEPLOY_PATH
-      #     cd $DEPLOY_PATH
-
-      #     # Extract deployment package
-      #     tar xzf /tmp/deployment.tar.gz
-      #     rm /tmp/deployment.tar.gz
-
-      #     # Check if docker-compose file exists
-      #     if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
-      #       echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
-      #       exit 1
-      #     fi
-
-      #     # Copy environment file if exists
-      #     if [ -f .env.production ]; then
-      #       cp .env.production .env
-      #     fi
-
-      #     # Clean/repair builder cache and avoid BuildKit flakiness
-      #     # sudo systemctl restart docker
-      #     # docker buildx prune -af || true
-      #     # docker builder prune -af || true
-      #     # docker image prune -af || true
-
-      #     # Stop existing containers
-      #     docker compose -f "$DOCKER_COMPOSE_FILE" down
-
-      #     # Rebuild and start containers
-      #     docker compose -f "$DOCKER_COMPOSE_FILE" build --no-cache
-      #     docker compose -f "$DOCKER_COMPOSE_FILE" up -d
-
-      #     # Clean up old images
-      #     # docker image prune -f
-
-      #     echo "Deployment complete!"
-      #     docker compose -f "$DOCKER_COMPOSE_FILE" ps
-      #     EOF
